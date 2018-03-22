@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% include blocks/head %>
+
+  <body>
+    <% include blocks/menu %>
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Просмотр статьи</h1>
+      </div>
+    </div>
+      <div class="container">
+	      
+	           <h1 >Дата:<%= post.date %></h1>
+		       <h2 ><%= post.title %></h1>
+		       <h3 ><%= post.description %></h2>
+		       <h4 ><%= post.fullText %></h3>
+
+      </div>
+</html>

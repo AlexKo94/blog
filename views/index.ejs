@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% include blocks/head %>
+  <body>
+    <% include blocks/menu %>
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Привет это мой блог</h1>
+        <% if(auth == undefined) {%>
+            <p>Для просмотра статей Вам нужно авторизоваться</p>
+            <p><a class="btn btn-primary btn-lg" href="/auth" role="button">Авторизация &raquo;</a></p>
+        <%} %>
+        <% if(auth != undefined) {%>
+            <p><%= auth.username %> читайте статьи с удовольствием!</p>
+        <%} %>
+      </div>
+    </div>
+
+    <div class="container">
+      <% if(auth != undefined) {%>
+        <% if(posts.length == 0){%>
+          <div class="row">
+            <h3>Статей нет</h3>
+          </div>
+        <%} %>
+        <% if(auth.role == 1){%>
+        <div class="row">
+            <p><a class="btn btn-secondary" href="/article" role="button">Добавить статью &raquo;</a></p>
+        </div>
+        <%} %>
+        <% if(posts.length > 0){%>
+            <div class="row">
+              <% for(var i=0; i<posts.length;i++) {%>
+                <div class="col-md-4">
+                  <h2><%= posts[i].title %></h2>
+                  <p><%= posts[i].description %> </p>
+                  <p><a class="btn btn-secondary" href="/article/<%= posts[i]._id %>" role="button">Просмотр &raquo;</a></p>
+                  <% if(auth.role == 1){%>
+                  <p><a class="btn btn-warning" href="/article?edit=<%= posts[i]._id %>" role="button">Редактировать &raquo;</a></p>
+                  <p><a class="btn btn-danger" href="/article?delete=<%= posts[i]._id %>" role="button">Удалить &raquo;</a></p>
+                  <%} %>
+                </div>
+              <%} %>
+            </div>
+            <nav aria-label="Page navigation example">
+            <% if(arrPages.length != 1){%>
+                  <ul class="pagination">
+                  <% if(prev.disabled){%>
+                    <li class="page-item disabled"><a class="page-link" href="/?page=<%=prev.number%>">Previous</a></li>
+                  <%} %>
+                  <% if(!prev.disabled){%>
+                    <li class="page-item"><a class="page-link" href="/?page=<%=prev.number%>">Previous</a></li>
+                  <%} %>
+
+                <% for(var i=0; i<arrPages.length;i++) {%>
+                  <% if(arrPages[i] != page){%>
+                  <li class="page-item"><a class="page-link" href="/?page=<%= arrPages[i] %>"><%= arrPages[i] %></a></li>
+                  <%} %>
+                  <% if(arrPages[i] == page){%>
+                  <li class="page-item active"><a class="page-link" href="/?page=<%= arrPages[i] %>"><%= arrPages[i] %></a></li>
+                  <%} %>
+                <%} %>
+                <% if(next.disabled){%>
+                    <li class="page-item disabled"><a class="page-link" href="/?page=<%=next.number%>">Next</a></li>
+                <%} %>
+                <% if(!next.disabled){%>
+                    <li class="page-item"><a class="page-link" href="/?page=<%=next.number%>">Next</a></li>
+                <%} %>
+                </ul>
+            <%} %>
+            </nav>
+        <%} %>
+      <%} %>
+      <% if(auth == undefined) {%>
+          <h3>Доступ к просмотру запрещен</h3>
+      <%} %>
+
+      <% include blocks/footer %>
+    </div>
+
+    </body>
+</html>

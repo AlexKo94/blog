@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% include blocks/head %>
+
+  <body>
+
+    <% include blocks/menu %>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Добавление статьи</h1>
+        <p>Заполните форму и сохраните статью</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <form method="POST" action="<%= action %>">
+          <% if(error != undefined) {%>
+          <div class="alert alert-danger" role="alert">
+            <%= error %>
+          </div>
+          <%} %>
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Заголовок</label>
+            <div class="col-sm-10">
+              <% if(inputs != undefined) {%>
+              <input type="text" class="form-control" id="inputEmail3" placeholder="Заголовок" name="title" value="<%= inputs.title %>">
+              <%} %>
+              <% if(inputs == undefined) {%>
+              <input type="text" class="form-control" id="inputEmail3" placeholder="Заголовок" name="title" value="">
+              <%} %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Краткое описание</label>
+            <div class="col-sm-10">
+              <% if(inputs != undefined) {%>
+              <input type="text" class="form-control" id="inputEmail3" placeholder="Краткое описание" name="description" value="<%= inputs.description %>">
+              <%} %>
+              <% if(inputs == undefined) {%>
+              <input type="text" class="form-control" id="inputEmail3" placeholder="Краткое описание" name="description" value="">
+              <%} %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Полный текст статьи</label>
+            <div class="col-sm-10">
+              <% if(inputs != undefined) {%>
+              <textarea type="text" class="form-control" id="inputEmail3" placeholder="Полный текст статьи" name="fullText" ><%= inputs.fullText %></textarea>
+              <%} %>
+              <% if(inputs == undefined) {%>
+              <textarea type="text" class="form-control" id="inputEmail3" placeholder="Полный текст статьи" name="fullText"></textarea>
+              <%} %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+              <button type="submit" class="btn btn-primary">Сохранить</button>
+            </div>
+          </div>
+      </form>
+      <% include blocks/footer %>
+    </div>
+</html>
