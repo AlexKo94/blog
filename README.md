@@ -6,4 +6,6 @@
 
 # Пользовательские функции
 
-## 1. getArrPages
+## getArrPages
+
+> We're living the future so
