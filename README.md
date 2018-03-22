@@ -1,5 +1,5 @@
 **ЗАПУСК ПРОЕКТА**:
 
-1. npm install
-2. Установленный MongoDB
-2. MongoDB url:'mongodb://localhost/blog'
+1. npm install в корне проекта
+2. Должен быть установлен MongoDB
+2. Путь к базе данных MongoDB **mongodb://localhost/blog**
