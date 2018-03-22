@@ -6,6 +6,6 @@
 
 # Пользовательские функции
 
-## getArrPages
+__getArrPages__
 
 > We're living the future so
